@@ -2,6 +2,8 @@
 using ReservationService.Application.Common.Behaviours;
 using FluentValidation;
 using MediatR;
+using ReservationService.Application.Common.Services;
+using ReservationService.Application.Common.Interfaces;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
@@ -18,6 +20,9 @@ public static class ConfigureServices
             cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
             cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(PerformanceBehaviour<,>));
         });
+
+        services
+            .AddScoped<IMakeReservationService, MakeReservationService>();
         return services;
     }
 }

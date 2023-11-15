@@ -13,7 +13,10 @@ public static class ConfigureServices
 
         services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
 
+        services.AddScoped<ApplicationDbContextInitialiser>();
+
         services.AddTransient<IDateTime, DateTimeService>();
+        services.AddTransient<IEmailSender, FakeEmailSender>();
 
         return services;
     }
